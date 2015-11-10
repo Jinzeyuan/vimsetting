@@ -1,0 +1,24 @@
+[submodule "matchit.zip"]
+	path = matchit.zip
+	url = ./bundle/matchit.zip/
+[submodule "L9"]
+	path = L9
+	url = ./bundle/L9
+[submodule "The-NERD-Commenter"]
+	path = The-NERD-Commenter
+	url = ./bundle/The-NERD-Commenter
+[submodule "bash-support.vim"]
+	path = bash-support.vim
+	url = ./bundle/bash-support.vim
+[submodule "bufexplorer.zip"]
+	path = bufexplorer.zip
+	url = ./bundle/bufexplorer.zip
+[submodule "taglist.vim"]
+	path = taglist.vim
+	url = ./bundle/taglist.vim
+[submodule "winmanager"]
+	path = winmanager
+	url = ./bundle/winmanager
+[submodule "zeavim.vim"]
+	path = zeavim.vim
+	url = ./bundle/zeavim.vim
