@@ -363,9 +363,9 @@ Bundle 'gmarik/vundle'
 " My Bundles here:  
 "  
 "  powerline
-Bundle 'Lokaltog/vim-powerline'
-	let Powerline_symbols='unicode'
-	let g:Powerline_symbols = 'fancy'
+"Bundle 'Lokaltog/vim-powerline'
+"	let Powerline_symbols='unicode'
+"	let g:Powerline_symbols = 'fancy'
 	let g:syntastic_python_flake8_args = '--ignore=W191,E501,E121,E122,E123,E128,E225,W291,E126'
 	let b:syntastic_checkers = ['flake8']
 	set laststatus=2
