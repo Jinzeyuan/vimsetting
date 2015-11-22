@@ -1,3 +1,4 @@
 .VimballRecord
 *.pyc
-.vim/bundle/*
+.vim/bundle/
+bundle/
