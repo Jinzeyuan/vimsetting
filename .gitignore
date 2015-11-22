@@ -2,3 +2,5 @@
 *.pyc
 .vim/bundle/
 bundle/
+tags
+tags-ja
