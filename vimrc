@@ -184,7 +184,6 @@ set smartindent
 set cindent
  
 " 制表符为4
-set tabstop=4
  
 " 统一缩进为4
 set softtabstop=4
@@ -366,8 +365,8 @@ Bundle 'gmarik/vundle'
 "Bundle 'Lokaltog/vim-powerline'
 "	let Powerline_symbols='unicode'
 "	let g:Powerline_symbols = 'fancy'
-	let g:syntastic_python_flake8_args = '--ignore=W191,E501,E121,E122,E123,E128,E225,W291,E126'
-	let b:syntastic_checkers = ['flake8']
+"	let g:syntastic_python_flake8_args = '--ignore=E927,W191,E501,E121,E122,E123,E128,E225,W291,E126'
+"	let b:syntastic_checkers = ['flake8']
 	set laststatus=2
 	set t_Co=256
 
@@ -388,9 +387,13 @@ Bundle 'The-NERD-Commenter'
 
 
 """""""""""""taglist
-Bundle 'taglist.vim'
-	let Tlist_Show_One_File=1
-	let Tlist_Exit_OnlyWindow=1
+"Bundle 'taglist.vim'
+	"let Tlist_Show_One_File=1
+	"let Tlist_Exit_OnlyWindow=1
+Bundle 'tagbar'
+	let g:tagbar_ctags_bin='/usr/bin/ctags'
+	let g:tagbar_width=30
+	nmap <F8> :TagbarToggle<CR>
 
 
 "bufexplorer.zip
@@ -406,16 +409,15 @@ Bundle 'bufexplorer.zip'
 	
 
 "winmanager
-Bundle 'winmanager'
-	let g:winManagerWindowLayout = "FileExplorer|TagList"
-	let g:winManagerWidth = 30
-	let g:defaultExplorer = 0
-	nmap <C-W><C-F> :FirstExplorerWindow<cr>
-	nmap <C-W><C-B> :BottomExplorerWindow<cr>
-	nmap wm :WMToggle<cr>
+"Bundle 'winmanager'
+
 
 Bundle 'rking/ag.vim'
-	let g:agprg="/usr/bin/ag --column"
+	let g:ag_prg="/usr/bin/rg --column"
+	cnoreabbrev Ag Ag!
+	nnoremap <Leader>a :Ag! <C-R>=expand('<cword>')<CR><CR>
+"Bundle 'mileszs/ack.vim'
+"	let g:ackprg = 'ag --vimgrep'
 
 Bundle 'molokai'
 
@@ -427,8 +429,8 @@ Bundle 'mark'
 "a.vim
 Bundle 'a.vim'
 
-"Bundle 'ervandew/supertab'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'ervandew/supertab'
+Bundle 'Valloric/YouCompleteMe'
 "YouCompleteMe
 nnoremap <leader>yd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
@@ -438,27 +440,28 @@ let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-"" make YCM compatible with UltiSnips (using supertab)
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-"
-"" better key bindings for UltiSnipsExpandTrigger
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-j>"
-let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsJumpForwardTrigger = "<C-n>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips","/home/jzy/.vim/UltiSnips"]
 " this mapping Enter key to <C-y> to chose the current highlight item 
 " and close the selection list, same as other IDEs.
 " CONFLICT with some plugins like tpope/Endwise
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+Bundle 'rdnetto/YCM-Generator'
 Bundle 'mattn/emmet-vim'
 Bundle 'matchit.zip'
 
 "bash-support
 Bundle 'bash-support.vim'
 
-"autocomplete
+""autocomplete
 "Bundle 'Shougo/NeoComplCache.vim'
 "	let g:neocomplcache_enable_at_startup = 1
 "	let g:AutoComplPop_NotEnableAtStartup = 1
@@ -473,14 +476,15 @@ Bundle 'bash-support.vim'
 "	let g:NeoComplCache_SnippetsDir = $VIMFILES.'/snippets'
 "	"<TAB>: completion. NO USE with snipmate
 "	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"
+"	let g:neocomplcache_force_overwrite_completefunc = 1 "解决上面那个错误
+
 
 
 "python
 "Bundle 'davidhalter/jedi-vim'
 	"let g:jedi#popup_on_select_first = 0
 	"let g:jedi#popup_on_dot = 0
-Bundle 'kevinw/pyflakes-vim'
+"Bundle 'kevinw/pyflakes-vim'
 "Bundle 'pydoc'
 "Bundle 'indent/python.vim'
 "Bundle 'python.vim'
@@ -526,6 +530,22 @@ Bundle 'bling/vim-airline'
 	let g:airline_linecolumn_prefix = '⭡'
 
 Bundle 'steffanc/cscopemaps.vim'
+Bundle 'quickfix-reflector.vim'
+Bundle 'ronakg/quickr-cscope.vim'
+	let g:quickr_cscope_keymaps = 0
+	let g:quickr_cscope_use_qf_g = 1
+	nmap <C-k>s <plug>(quickr_cscope_symbols)
+	nmap <C-k>g <plug>(quickr_cscope_global)
+	nmap <C-k>c <plug>(quickr_cscope_callers)
+	nmap <C-k>f <plug>(quickr_cscope_files)
+	nmap <C-k>i <plug>(quickr_cscope_includes)
+	nmap <C-k>t <plug>(quickr_cscope_text)
+	nmap <C-k>e <plug>(quickr_cscope_egrep)
+	nmap <C-k>d <plug>(quickr_cscope_functions)
+
+"Bundle 'cscope.vim'
+"Bundle 'vim-scripts/cscope-quickfix'
+""	nnoremap <C-]> :cscope find g <C-R>=expand('<cword>')<CR><CR>
 
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}  
 Bundle 'tpope/vim-rails.git'  
@@ -562,10 +582,13 @@ Bundle 'python.vim'
 
 Bundle 'bronson/vim-trailing-whitespace'
 
+Bundle 'tpope/vim-obsession'
+
 Bundle 'Chiel92/vim-autoformat'
 	noremap <F3> :Autoformat<CR>
 Bundle 'tidy'
 Bundle 'einars/js-beautify'
+""Bundle 'LustyExplorer'
 
 Bundle 'kien/rainbow_parentheses.vim'
 	let g:rbpt_colorpairs = [
@@ -599,3 +622,4 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ  
 " NOTE: comments after Bundle command are not allowed..  
+set tabstop=4
